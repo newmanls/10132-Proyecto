@@ -9,13 +9,7 @@
 ## Descarga el repositorio
 
 ```sh
-git clone https://[usuario de github]@github.com/newmanls/10132-Proyecto
-```
-
-Ejemplo:
-
-```sh
-git clone https://newmanls@github.com/newmanls/10132-Proyecto
+git clone https://github.com/newmanls/10132-Proyecto
 ```
 
 Luego, se puede navegar dentro de la carpeta del repositorio con:
