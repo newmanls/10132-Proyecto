@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Iniciar sesión{% endblock %}
+{% block content %}
+<body id="login-body" class="d-flex flex-column flex-nowrap min-vh-100">
+  <div class="d-flex flex-grow-1 justify-content-center align-items-center bg-body">
+    <div class="d-flex flex-column gap-3 p-4 align-items-center bg-body border border-secondary-subtle rounded-3" style="width: 20rem">
+      <img class="w-75 mb-2" src="{% static 'img/unexca_logo_positivo_simple.webp' %}" alt="logo unexca">
+      <form method="post" id="login_form" class="d-flex flex-column flex-nowrap gap-2 w-100" action="">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+        <p class="alert alert-danger" role="alert">{{ form.non_field_errors.as_text }}</p>
+        {% endif %}
+        <label for="id_username">Usuario</label>
+        <input id="id_username" class="form-control" type="number" name="username" autocapitalize="none" autocomplete="username" maxlength="150" placeholder="Usuario" autofocus required>
+        <label for="id_password">Contraseña</label>
+        <input id="id_password" class="form-control" type="password" name="password" autocomplete="current-password" placeholder="Contraseña" required>
+        <input class="btn btn-primary w-100" type="submit" value="Iniciar Sesión">
+      </form>
+    </div>
+  </div>
+  <footer class="bg-primary text-light">
+    <div class="container d-flex justify-content-between align-items-center p-3">
+      <div class="footer-left">
+        <span>Universidad Nacional Experimental de la Gran Caracas</span>
+      </div>
+      <div class="footer-right fs-4 d-flex gap-4">
+        <a href="https://www.instagram.com/unexca_ve/" target="_blank"><i class="bi bi-instagram"></i></a>
+        <a href="https://twitter.com/UNEXCA_ve" target="_blank"><i class="bi bi-twitter-x"></i></a>
+      </div>
+    </div>
+  </footer>
+</body>
+{% endblock %}

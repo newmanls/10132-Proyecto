@@ -1,0 +1,19 @@
+<a href="{% url 'alumno_clases' %}"
+  {% if '/u/3/clases/' in request.path %}
+  class="nav-link active" aria-current="page"
+  {% else %}
+  class="nav-link"
+  {% endif %}>
+  <i class="bi bi-book{% if '/u/3/clases/' in request.path %}-fill{% endif %}"></i>
+  <span>Mis clases</span>
+</a>
+
+<a href="{% url 'alumno_solicitudes' %}"
+  {% if '/u/3/solicitudes/' in request.path %}
+  class="nav-link active" aria-current="page"
+  {% else %}
+  class="nav-link"
+  {% endif %}>
+  <i class="bi bi-clipboard{% if '/u/3/solicitudes/' in request.path %}-fill{% endif %}"></i>
+  <span>Solicitudes</span>
+</a>

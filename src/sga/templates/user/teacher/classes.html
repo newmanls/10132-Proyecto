@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block title %}Mis clases{% endblock %}
+
+{% block main %}
+{% if clase_list %}
+<div class="accordion">
+  {% for clase in clase_list %}
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="panelsStayOpen-collapse{{ forloop.counter }}">{{ clase.materia }} - {{ clase.seccion }}</button>
+    </h2>
+    <div id="panelsStayOpen-collapse{{ forloop.counter }}" class="accordion-collapse collapse">
+      <div class="accordion-body">
+        <table>
+          <tr>
+            <td class="fw-bold pe-3">Sección</td>
+            <td>{{ clase.seccion }}</td>
+          </tr>
+          <tr>
+            <td class="fw-bold pe-3">Horario</td>
+            <td>{{ clase.get_dia_display }} {{ clase.hora_inicio|time:"g:i A" }} - {{ clase.hora_fin|time:"g:i A" }}</td>
+          </tr>
+          <tr>
+            <td class="fw-bold pe-3">Aula</td>
+            <td>{{ clase.aula }}</td>
+          </tr>
+        </table>
+        <a href="{% url 'docente_matricula_clase' clase.id %}" class="btn btn-primary mt-2">Ver matrícula</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p>Usted no tiene clases asignadas</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block title %}Mi matrícula{% endblock %}
+
+{% block main %}
+{% if not clases %}
+<p>No posee clases asignadas</p>
+{% else %}
+<button class="btn btn-secondary dropdown-toggle mb-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{ clase_display }}</button>
+<ul class="dropdown-menu">
+  {% for clase in clases %}
+  <li><a class="dropdown-item {% if clase_id == clase.id %}active{% endif %}" href="{% url 'docente_matricula_clase' clase.id %}">{{ clase.materia }} ({{ clase.seccion }})</a></li>
+  {% endfor %}
+</ul>
+
+{% if clase_id %}
+{% if not inscripcion_list %}
+<p>No tiene matrícula inscrita</p>
+{% else %}
+<table class="table">
+  <tr>
+    <th>#</th>
+    <th>Cédula</th>
+    <th>Apellidos</th>
+    <th>Nombres</th>
+    <th>Teléfono</th>
+    <th>Correo</th>
+  </tr>
+  {% for inscripcion in inscripcion_list %}
+  <tr>
+    <td>{{ forloop.counter }}</td>
+    <td>{{ inscripcion.alumno.username }}</td>
+    <td>{{ inscripcion.alumno.last_name }}</td>
+    <td>{{ inscripcion.alumno.first_name }}</td>
+    <td>{{ inscripcion.alumno.get_telefono }}</td>
+    <td>{{ inscripcion.alumno.get_correo }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+{% endif %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,6 @@
+__pycache__
+sga/migrations/*
+!sga/migrations/__init__.py
+.venv
+venv
+db.sqlite3

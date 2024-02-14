@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<body class="d-flex">
+  <nav id="nav" class="d-flex bg-body border gap-3 flex-shrink-0">
+    <a id="unexca-logo" class="d-flex justify-content-center mt-3 mx-4 mb-0" href="{% url 'home' %}">
+      <img src="{% static 'img/unexca_logo_positivo_simple.webp' %}" alt="logo unexca" class="w-100">
+    </a>
+    <div class="nav nav-pills flex-column flex-grow-1 w-100 px-3 gap-1">
+      {% if user.rol == 2 %}
+      {% include 'user/teacher/navbar.html' %}
+      {% endif %}
+
+      {% if user.rol == 3 %}
+      {% include 'user/student/navbar.html' %}
+      {% endif %}
+
+      <a class="nav-link{% if '/perfil' in request.path %} active{% endif %} nav-pill-profile" aria-current="page" href="{% url 'perfil' %}">
+        <i class="bi bi-person{% if '/perfil' in request.path %}-fill{% endif %}"></i><span>Mi perfil</span>
+      </a>
+    </div>
+    <a id="user-info" href="{% url 'perfil' %}" class="user-info d-flex w-100 p-3 gap-3 text-body text-decoration-none bg-body-subtle border-top">
+      <div class="user-info-imagebox d-flex overflow-hidden bg-body-secondary border border-secondary-subtle rounded-circle" style="width: 3rem; height: 3rem">
+        <img src="{% static 'img/avatar_default.webp' %}" alt="user avatar" class="img-fluid object-fit-cover">
+      </div>
+      <div class="user-info-textbox d-flex flex-column overflow-hidden" style="width: calc(100% - 4rem)">
+        <span class="user-name fw-bold text-truncate">{{ user }}</span>
+        <span class="user-role">{{ user.get_rol_display }}</span>
+      </div>
+    </a>
+  </nav>
+  <main class="p-3 bg-body">
+    {% block main %}{% endblock %}
+  </main>
+</body>
+{% endblock %}

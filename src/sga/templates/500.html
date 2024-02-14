@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Error en el servidor{% endblock %}
+{% block content %}
+
+<div class="container text-center h-100">
+  <img src="{% static 'img/unexca_logo_positivo_simple.webp' %}" alt="logo unexca" class="mw-75" style="width: 10rem">
+  <h1>Error en el servidor (500)</h1>
+  <a href="{% url 'home' %}">Volver al inicio</a>
+</div>
+
+{% endblock %}

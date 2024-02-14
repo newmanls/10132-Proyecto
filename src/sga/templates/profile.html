@@ -1,0 +1,60 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block title %}Mi Perfil{% endblock %}
+
+{% block main %}
+<div class="d-flex flex-column gap-2">
+  <form class="d-grid gap-2" action="">
+    <div class="row row-gap-2">
+      <div class="col-lg">
+        <div class="input-group">
+          <label class="input-group-text" for="username">Cédula</label>
+          <input type="number" name="username" class="form-control" value="{{ user.username }}" disabled>
+        </div>
+      </div>
+      <div class="col-lg">
+        <div class="input-group">
+          <label for="role_id" class="input-group-text">Rol</label>
+          <input type="text" name="role_id" class="form-control" value="{{ user.get_rol_display }}" disabled>
+        </div>
+      </div>
+    </div>
+    <div class="row row-gap-2">
+      <div class="col-lg">
+        <div class="input-group">
+          <label for="last_name" class="input-group-text">Apellidos</label>
+          <input type="text" name="last_name" class="form-control" value="{{ user.last_name }}" disabled>
+        </div>
+      </div>
+      <div class="col-lg">
+        <div class="input-group">
+          <label for="first_name" class="input-group-text">Nombres</label>
+          <input name="first_name" type="text" class="form-control" value="{{ user.first_name }}" disabled>
+        </div>
+      </div>
+    </div>
+    <div class="row row-gap-2">
+      <div class="col-lg">
+        <div class="input-group">
+          <label for="email" class="input-group-text">Correo</label>
+          <input name="email" type="email" class="form-control" value="{{ user.email }}" required>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="input-group">
+          <label for="telefono" class="input-group-text">Telefono</label>
+          <input name="telefono" type="tel" class="form-control" minlength=11 maxlength=11 value="{{ user.datosusuario.telefono }}">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-group">
+        <label for="direccion" class="input-group-text">Dirección</label>
+        <input name="direccion" type="text" class="form-control" value="{{ user.datosusuario.direccion }}">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </form>
+  <a class="btn btn-danger" href="{% url 'logout' %}" role="button">Cerrar sesión</a>
+</div>
+{% endblock %}
